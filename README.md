@@ -1,6 +1,6 @@
 
 # experiments
-<svg width="99.9" height="18.9" xmlns="http://www.w3.org/2000/svg">
+![image](<svg width="99.9" height="18.9" xmlns="http://www.w3.org/2000/svg">
   <linearGradient id="a" x2="0" y2="100%">
     <stop offset="0.0" stop-opacity="0.0" stop-color="#fff" />
     <stop offset="0.1" stop-opacity="0.0" stop-color="#aaa" />
@@ -15,10 +15,8 @@
     <text x="17.6" y="14.0" fill="#000">build</text>
     <text x="67.5" y="14.0" fill="#fff">setup now</text>
   </g>
-</svg>
+</svg>)
 
 Test
 
 Test
-
-![image](http://github.com)
