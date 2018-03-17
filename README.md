@@ -1,2 +1,6 @@
 # experiments
-<input type="button">Click Me!</input>
+Testing buttons
+
+<button type="button">Click Me!</button>
+
+Separating lines
