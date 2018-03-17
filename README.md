@@ -1,2 +1,2 @@
 # experiments
-<button type="button">Click Me!</button>
+<input type="button">Click Me!</input>
