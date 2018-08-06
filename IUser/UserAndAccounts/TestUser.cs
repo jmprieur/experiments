@@ -1,4 +1,5 @@
-﻿#define NewApi
+﻿// #define NewApi
+#define NewNewApi
 
 using Microsoft.Identity.Client;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using IUser = Microsoft.Identity.Client.IAccount;
 
 namespace UserAndAccounts
 {
@@ -24,13 +26,14 @@ namespace UserAndAccounts
             AuthenticationResult result;
             IEnumerable<IUser> users = await GetUsersAsync(app);
 
+            IUser user = (await GetUsersAsync(app)).FirstOrDefault();
             try
             {
-                result = await app.AcquireTokenSilentAsync(scopes, users.FirstOrDefault());
+                result = await app.AcquireTokenSilentAsync(scopes, user);
             }
             catch (MsalUiRequiredException)
             {
-                result = await app.AcquireTokenAsync(scopes, users.FirstOrDefault());
+                result = await app.AcquireTokenAsync(scopes, user);
             }
 
             users = await GetUsersAsync(app);
@@ -41,6 +44,12 @@ namespace UserAndAccounts
             string identifier = signedInUser.Identifier;
             string environement = signedInUser.Environment;
             string name = string.Empty; // the name did not make sense indeed
+#elif NewNewApi
+            string displayableId = signedInUser.Username;
+            string identifier = signedInUser.HomeAccountId.Identifier;
+            string environement = signedInUser.Environment;
+            string name = string.Empty; // the name did not make sense indeed
+
 #else
             string displayableId = signedInUser.DisplayableId;
             string identifier = signedInUser.Identifier;
@@ -63,6 +72,8 @@ namespace UserAndAccounts
         {
 #if NewApi
             return await app.GetUsersAsync();
+#elif NewNewApi
+            return await app.GetAccountsAsync();
 #else
             return app.Users;
 #endif
